@@ -1,13 +1,8 @@
 name: go-sonarcloud
 on: 
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - develop
-      - main
-    types: [opened, synchronize, reopened]
 jobs:
   sonarcloud:
     runs-on: ubuntu-20.04
