@@ -1,11 +1,11 @@
-FROM golang:1.19.1
+FROM golang:1.17.11
 
 WORKDIR /app
 
-COPY math* ./
+COPY *.go ./
 
-RUN go mod init mate2 && \
+RUN go mod init mate && \
     go mod tidy && \
-    go build -o /app/mate2
+    go build -o /app/mate
 
-CMD ["./mate2"]
+CMD ["./mate"]

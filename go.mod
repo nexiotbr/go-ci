@@ -1,3 +1,3 @@
-module mate2
+module mate
 
-go 1.19
+go 1.17
