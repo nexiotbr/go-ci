@@ -4,10 +4,10 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - develop
-      - main
     types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - develop
 jobs:
   sonarcloud:
     runs-on: ubuntu-20.04
@@ -17,16 +17,16 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis]
       - uses: actions/setup-go@v2
         with:
-          go-version: 1.15
-      - run: go test
-      - run: go run math.go
+          go-version: 1.17.11
+      - run: go test -coverprofile=coverage.out
+      - run: go run mate
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-
+          
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: darioeliseo/ci-go:latest
+          tags: darioeliseo/go-ci:latest
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
