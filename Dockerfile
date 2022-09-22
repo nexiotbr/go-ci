@@ -6,6 +6,6 @@ COPY math* ./
 
 RUN go mod init mate2 && \
     go mod tidy && \
-    go build mate2
+    go build -o /app/mate2
 
 CMD ["./mate2"]
